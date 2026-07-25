@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Technical Exchange — Booth Preview 3x3</title>
+
+<!-- Free, no signup: Google's model-viewer web component -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+<!-- Free Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0a0a0a;
+    --bg-2: #121110;
+    --gold: #c9a26a;
+    --gold-soft: rgba(201,162,106,0.35);
+    --ink: #f2f0ec;
+    --muted: #8a8580;
+    --line: rgba(201,162,106,0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background: radial-gradient(ellipse at 50% 0%, var(--bg-2) 0%, var(--bg) 65%);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 36px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-img {
+    height: 38px;
+    width: auto;
+    display: block;
+  }
+
+  .tagline {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding-left: 14px;
+    margin-left: 14px;
+    border-left: 1px solid var(--line);
+  }
+
+  .booth-tag {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-soft);
+    padding: 7px 16px;
+    border-radius: 2px;
+  }
+
+  /* ---------- Hero / title ---------- */
+  .titleblock {
+    text-align: center;
+    padding: 34px 20px 18px;
+  }
+  .titleblock h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(26px, 4vw, 38px);
+    margin: 0 0 6px;
+    letter-spacing: 0.02em;
+  }
+  .titleblock p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ---------- Viewer frame ---------- */
+  .stage-wrap {
+    max-width: 1100px;
+    margin: 10px auto 0;
+    padding: 0 24px;
+  }
+  .stage {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 80px -20px var(--gold-soft);
+  }
+
+  model-viewer {
+    width: 100%;
+    height: 62vh;
+    min-height: 380px;
+    background: transparent;
+    --poster-color: transparent;
+  }
+
+  .hint {
+    text-align: center;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    padding: 14px 0 6px;
+  }
+
+  /* ---------- Spec strip ---------- */
+  .specs {
+    max-width: 1100px;
+    margin: 22px auto 0;
+    padding: 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+  .chip {
+    border: 1px solid var(--line);
+    padding: 9px 18px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  .chip b { color: var(--gold); font-weight: 500; margin-right: 6px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 60px;
+    padding: 22px 36px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 560px) {
+    header { padding: 18px 20px; }
+    .wordmark { font-size: 13px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img class="logo-img" src="energyte-logo.png" alt="Energy Technical Exchange">
+    <div class="tagline">Exhibition Booth Catalogue</div>
+  </div>
+  <div class="booth-tag">3x3</div>
+</header>
+
+<div class="titleblock">
+  <h1>Booth Design — 3x3 · Design A</h1>
+  <p>DRAG TO ROTATE &nbsp;·&nbsp; SCROLL TO ZOOM</p>
+</div>
+
+<div class="stage-wrap">
+  <div class="stage">
+    <!--
+      REPLACE per booth:
+      - src          -> path/URL to the .glb file
+      - alt          -> description of the booth
+    -->
+    <model-viewer
+      src="a3-booth-3x3.glb"
+      alt="Energy Technical Exchange 3x3 exhibition booth design A"
+      camera-controls
+      auto-rotate
+      auto-rotate-delay="0"
+      rotation-per-second="18deg"
+      shadow-intensity="1"
+      exposure="1"
+      camera-orbit="45deg 65deg auto"
+      min-camera-orbit="auto 10deg auto"
+      max-camera-orbit="auto 100deg auto"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      touch-action="pan-y">
+    </model-viewer>
+  </div>
+  <div class="hint">Tap the AR icon on mobile to view this booth in your own space</div>
+</div>
+
+<!-- Optional: edit or remove these spec chips per booth -->
+<div class="specs">
+  <div class="chip"><b>Footprint</b>3m × 3m</div>
+  <div class="chip"><b>Includes</b>Backwall, Screen, Reception Counter, Seating</div>
+  <div class="chip"><b>Finish</b>Black &amp; Gold</div>
+</div>
+
+<footer>
+  <span>© Energy Technical Exchange</span>
+  <a href="https://www.energy-te.com" target="_blank" rel="noopener">www.energy-te.com</a>
+</footer>
+
+</body>
+</html>
