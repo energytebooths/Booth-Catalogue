@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Technical Exchange — Booth Catalogue</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0a0a0a;
+    --bg-2: #121110;
+    --card: #141311;
+    --gold: #c9a26a;
+    --gold-soft: rgba(201,162,106,0.35);
+    --ink: #f2f0ec;
+    --muted: #8a8580;
+    --line: rgba(201,162,106,0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background: radial-gradient(ellipse at 50% 0%, var(--bg-2) 0%, var(--bg) 65%);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; }
+  .logo-img { height: 38px; width: auto; display: block; }
+  .tagline {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding-left: 14px;
+    margin-left: 14px;
+    border-left: 1px solid var(--line);
+  }
+
+  /* ---------- Hero ---------- */
+  .titleblock {
+    text-align: center;
+    padding: 46px 20px 8px;
+  }
+  .titleblock h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(28px, 4.2vw, 42px);
+    margin: 0 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .titleblock p {
+    margin: 0 auto;
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+
+  /* ---------- Filter tabs ---------- */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 28px 20px 10px;
+  }
+  .filter-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 9px 18px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover { color: var(--ink); border-color: var(--gold-soft); }
+  .filter-btn.active {
+    color: var(--bg);
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ---------- Grid ---------- */
+  .grid {
+    max-width: 1240px;
+    margin: 20px auto 0;
+    padding: 20px 30px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 26px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .card:hover {
+    border-color: var(--gold-soft);
+    transform: translateY(-3px);
+  }
+
+  .thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #050505 no-repeat center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumb.no-image::after {
+    content: "No image yet";
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .thumb .size-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(10,10,10,0.75);
+    border: 1px solid var(--gold-soft);
+    padding: 5px 11px;
+    border-radius: 2px;
+  }
+
+  .card-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .card-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  .card-body p {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .preview-btn {
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 11px 16px;
+    border-radius: 2px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .preview-btn:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+  .preview-btn svg { width: 13px; height: 13px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 22px 36px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 560px) {
+    header { padding: 18px 20px; }
+    .grid { padding: 16px 18px 60px; grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img class="logo-img" src="energyte-logo.png" alt="Energy Technical Exchange">
+    <div class="tagline">Exhibition Booth Catalogue</div>
+  </div>
+</header>
+
+<div class="titleblock">
+  <h1>Booth Designs</h1>
+  <p>Browse every layout below and preview it in interactive 3D — drag to rotate, zoom, and view from every angle.</p>
+</div>
+
+<div class="filters" id="filters"></div>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  <span>© Energy Technical Exchange</span>
+  <a href="https://www.energy-te.com" target="_blank" rel="noopener">www.energy-te.com</a>
+</footer>
+
+<script>
+/* =========================================================
+   ADD YOUR BOOTHS HERE — this is the only part you need to edit.
+   One entry per booth. Copy/paste a block and fill in the blanks.
+
+   size    -> used for the filter tabs, keep it short e.g. "3x3", "4x3", "6x3"
+   title   -> shown on the card
+   desc    -> short description (footprint, includes, etc.)
+   image   -> filename of a render/thumbnail you upload to the repo
+              (leave as "" if you don't have one yet — shows a placeholder)
+   link    -> filename of that booth's viewer .html page
+   ========================================================= */
+const booths = [
+  {
+    size: "3x3",
+    title: "Design A",
+    desc: "3m × 3m · Backwall, screen, reception counter, seating",
+    image: "",
+    link: "booth-3x3-a3.html"
+  },
+  // {
+  //   size: "3x3",
+  //   title: "Design B",
+  //   desc: "3m × 3m · Open layout with product display",
+  //   image: "booth-3x3-b-render.jpg",
+  //   link: "booth-3x3-designB.html"
+  // },
+  // {
+  //   size: "4x3",
+  //   title: "Design A",
+  //   desc: "4m × 3m · Double reception, meeting area",
+  //   image: "booth-4x3-a-render.jpg",
+  //   link: "booth-4x3-designA.html"
+  // },
+];
+
+/* ============ Rendering logic below — no need to edit ============ */
+
+const grid = document.getElementById('grid');
+const filtersEl = document.getElementById('filters');
+const sizes = ["All", ...new Set(booths.map(b => b.size))];
+let activeFilter = "All";
+
+function renderFilters() {
+  filtersEl.innerHTML = sizes.map(s =>
+    `<button class="filter-btn ${s === activeFilter ? 'active' : ''}" data-size="${s}">${s}</button>`
+  ).join('');
+  filtersEl.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.size;
+      renderFilters();
+      renderGrid();
+    });
+  });
+}
+
+function renderGrid() {
+  const items = activeFilter === "All" ? booths : booths.filter(b => b.size === activeFilter);
+  grid.innerHTML = items.map(b => `
+    <div class="card">
+      <div class="thumb ${b.image ? '' : 'no-image'}" style="${b.image ? `background-image:url('${b.image}')` : ''}">
+        <span class="size-tag">${b.size}</span>
+      </div>
+      <div class="card-body">
+        <h3>${b.title}</h3>
+        <p>${b.desc}</p>
+        <a class="preview-btn" href="${b.link}">
+          Preview in 3D
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12h8M13 8l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderFilters();
+renderGrid();
+</script>
+
+</body>
+</html>
